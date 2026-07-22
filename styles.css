@@ -177,14 +177,26 @@ button {
 }
 
 .hero {
-  min-height: calc(78svh - 64px);
-  display: flex;
-  align-items: flex-end;
-  padding: 28px 18px;
+  display: grid;
+  gap: 18px;
+  padding: 18px 18px 28px;
   background:
-    linear-gradient(180deg, rgba(16, 19, 24, 0.08), rgba(16, 19, 24, 0.9)),
-    linear-gradient(135deg, rgba(16, 19, 24, 0.18), rgba(226, 71, 71, 0.18)),
-    url("assets/Header.PNG") center / cover;
+    linear-gradient(180deg, rgba(226, 71, 71, 0.16), rgba(16, 19, 24, 0) 34%),
+    #101318;
+}
+
+.hero-image {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #07090d;
+  box-shadow: var(--shadow);
+}
+
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero-content {
@@ -416,7 +428,6 @@ details + details {
   }
 
   .hero {
-    min-height: 74vh;
     border-radius: 0 0 8px 8px;
   }
 
