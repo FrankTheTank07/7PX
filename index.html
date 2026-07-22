@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111827" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="7PX Hub" />
+    <meta name="description" content="7PX alliance hub for Last War: Survival guides, events, rankings, and rules." />
+    <title>7PX Alliance Hub</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <link rel="icon" href="assets/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="icon-button" id="menuButton" aria-label="Open menu" aria-controls="siteDrawer" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a class="brand" href="#home" aria-label="7PX home">
+          <span class="brand-mark">7PX</span>
+          <span class="brand-text">Alliance Hub</span>
+        </a>
+        <a class="small-action" href="#quick-start">Start</a>
+      </header>
+
+      <aside class="drawer" id="siteDrawer" aria-hidden="true">
+        <div class="drawer-header">
+          <div>
+            <strong>7PX</strong>
+            <span>Last War: Survival</span>
+          </div>
+          <button class="close-button" id="closeButton" aria-label="Close menu">x</button>
+        </div>
+        <nav class="drawer-nav" aria-label="Site sections">
+          <a href="#home">Home</a>
+          <a href="#alliance">Alliance Info</a>
+          <a href="#quick-start">Beginner Guide</a>
+          <a href="#events">Events</a>
+          <a href="#combat">Heroes & Combat</a>
+          <a href="#rankings">Rankings</a>
+          <a href="#infographics">Infographics</a>
+          <a href="#tools">Tools</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </aside>
+      <div class="scrim" id="scrim" hidden></div>
+
+      <main id="home">
+        <section class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">Last War: Survival</p>
+            <h1>7PX</h1>
+            <p class="hero-copy">A mobile alliance hub for rules, event prep, rankings, and quick guides.</p>
+            <div class="hero-actions">
+              <a href="#quick-start">Start here</a>
+              <a href="#infographics">View cards</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section compact" id="quick-start">
+          <div class="section-heading">
+            <p class="eyebrow">New and returning members</p>
+            <h2>Quick Start</h2>
+          </div>
+          <div class="checklist">
+            <article>
+              <span>01</span>
+              <h3>Read the rules</h3>
+              <p>No alliance drama, no unauthorized hits, and follow event calls when the team is pushing.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Plan your week</h3>
+              <p>Save speedups, resources, radar, and shards for the right VS days instead of spending early.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Join events</h3>
+              <p>Show up for alliance events, reinforce when asked, and keep shields ready during war windows.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="alliance">
+          <div class="section-heading">
+            <p class="eyebrow">How 7PX runs</p>
+            <h2>Alliance Info</h2>
+          </div>
+          <div class="info-grid">
+            <article>
+              <h3>Rules</h3>
+              <p>Keep the alliance coordinated: respect nap rules, rally targets, event timing, and officer calls.</p>
+            </article>
+            <article>
+              <h3>Ranks</h3>
+              <p>Use this section later for R5/R4 contacts, recruiting requirements, and promotion expectations.</p>
+            </article>
+            <article>
+              <h3>Culture</h3>
+              <p>Built for active players who want clear information, clean teamwork, and better event scores.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section feature-band" id="events">
+          <div class="section-heading">
+            <p class="eyebrow">Preparation wins points</p>
+            <h2>Events</h2>
+          </div>
+          <div class="event-list">
+            <a href="#rankings"><strong>Weekly VS</strong><span>Rank tracking, push reminders, and weekly results.</span></a>
+            <a href="#tools"><strong>Alliance Duel</strong><span>Day-by-day prep checklists and score priorities.</span></a>
+            <a href="#combat"><strong>War Events</strong><span>Shield timing, rally etiquette, and reinforcement basics.</span></a>
+          </div>
+        </section>
+
+        <section class="section" id="combat">
+          <div class="section-heading">
+            <p class="eyebrow">Build smarter</p>
+            <h2>Heroes & Combat</h2>
+          </div>
+          <div class="guide-list">
+            <article>
+              <h3>Squad Building</h3>
+              <p>Hero priority notes, lineup examples, and upgrade order can live here.</p>
+            </article>
+            <article>
+              <h3>Rallies</h3>
+              <p>Who starts them, who joins them, and what members should check before sending troops.</p>
+            </article>
+            <article>
+              <h3>Defense</h3>
+              <p>Shield reminders, hospital management, and safe behavior during enemy activity.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="rankings">
+          <div class="section-heading">
+            <p class="eyebrow">Performance archive</p>
+            <h2>Rankings</h2>
+          </div>
+          <div class="rank-card">
+            <img src="assets/weekly-vs-current.png" alt="7PX weekly VS ranking graphic" />
+            <div>
+              <h3>Weekly VS Snapshot</h3>
+              <p>Use this space for the newest final ranking graphic and links to past weekly results.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="infographics">
+          <div class="section-heading">
+            <p class="eyebrow">Saveable cards</p>
+            <h2>Infographics</h2>
+          </div>
+          <div class="media-card">
+            <img src="assets/rule-event-cards.png" alt="7PX rule and event card collection" />
+          </div>
+        </section>
+
+        <section class="section compact" id="tools">
+          <div class="section-heading">
+            <p class="eyebrow">Future utilities</p>
+            <h2>Tools</h2>
+          </div>
+          <div class="tool-grid">
+            <button type="button">VS checklist</button>
+            <button type="button">Upgrade planner</button>
+            <button type="button">Event timers</button>
+            <button type="button">Resource notes</button>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="section-heading">
+            <p class="eyebrow">Fast answers</p>
+            <h2>FAQ</h2>
+          </div>
+          <details>
+            <summary>Can I save this to my phone home screen?</summary>
+            <p>Yes. Once hosted, use Share > Add to Home Screen on iPhone or Add to Home screen from Chrome on Android.</p>
+          </details>
+          <details>
+            <summary>Will the site need constant updates?</summary>
+            <p>No. The draft is structured around evergreen guides, with optional spots for rankings and current reminders.</p>
+          </details>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
