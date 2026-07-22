@@ -48,9 +48,9 @@ button {
   top: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: 44px minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-height: 64px;
   padding: calc(8px + env(safe-area-inset-top)) 16px 8px;
   background: rgba(16, 19, 24, 0.9);
@@ -105,6 +105,7 @@ button {
 }
 
 .small-action,
+.refresh-button,
 .hero-actions a {
   border-radius: 8px;
   background: var(--gold);
@@ -112,9 +113,20 @@ button {
   font-weight: 800;
 }
 
-.small-action {
+.small-action,
+.refresh-button {
   padding: 10px 12px;
   font-size: 0.88rem;
+}
+
+.refresh-button {
+  border: 1px solid rgba(244, 185, 66, 0.42);
+  background: rgba(244, 185, 66, 0.13);
+  color: var(--gold);
+}
+
+.refresh-button[disabled] {
+  opacity: 0.72;
 }
 
 .drawer {
