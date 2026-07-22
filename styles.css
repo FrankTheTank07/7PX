@@ -182,9 +182,9 @@ button {
   align-items: flex-end;
   padding: 28px 18px;
   background:
-    linear-gradient(180deg, rgba(16, 19, 24, 0.15), rgba(16, 19, 24, 0.92)),
-    linear-gradient(135deg, rgba(226, 71, 71, 0.55), rgba(86, 198, 216, 0.22)),
-    url("assets/rule-event-cards.png") center / cover;
+    linear-gradient(180deg, rgba(16, 19, 24, 0.08), rgba(16, 19, 24, 0.9)),
+    linear-gradient(135deg, rgba(16, 19, 24, 0.18), rgba(226, 71, 71, 0.18)),
+    url("assets/Header.PNG") center / cover;
 }
 
 .hero-content {
