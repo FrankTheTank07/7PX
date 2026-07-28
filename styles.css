@@ -339,6 +339,65 @@ button {
   line-height: 1;
 }
 
+.collapsible-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+
+.collapsible-trigger .eyebrow {
+  display: block;
+}
+
+.collapsible-title {
+  display: block;
+  font-size: clamp(1.7rem, 9vw, 2.7rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.collapse-icon {
+  position: relative;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.collapse-icon::before,
+.collapse-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--gold);
+  transform: translate(-50%, -50%);
+}
+
+.collapse-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.collapsible-trigger[aria-expanded="true"] .collapse-icon::after {
+  opacity: 0;
+}
+
+.collapsible-content {
+  padding-top: 16px;
+}
+
 .guide-list,
 .goal-grid {
   display: grid;

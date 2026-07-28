@@ -12,7 +12,7 @@
     <link rel="manifest" href="manifest.webmanifest?v=12" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="icon" href="assets/icon-192.png" />
-    <link rel="stylesheet" href="styles.css?v=24" />
+    <link rel="stylesheet" href="styles.css?v=25" />
   </head>
   <body>
     <div class="app-shell">
@@ -73,12 +73,16 @@
           </div>
         </section>
 
-        <section class="section feature-band" id="events">
-          <div class="section-heading">
-            <p class="eyebrow">Preparation wins points</p>
-            <h2>Events</h2>
-          </div>
-          <div class="event-stack" aria-label="Alliance event guides">
+        <section class="section feature-band collapsible-section is-collapsed" id="events">
+          <button class="collapsible-trigger" type="button" aria-expanded="false" aria-controls="eventsContent">
+            <span>
+              <span class="eyebrow">Preparation wins points</span>
+              <span class="collapsible-title">Events</span>
+            </span>
+            <span class="collapse-icon" aria-hidden="true"></span>
+          </button>
+          <div class="collapsible-content" id="eventsContent" hidden>
+            <div class="event-stack" aria-label="Alliance event guides">
             <article class="event-feature">
               <div class="event-single-preview">
                 <div class="scroll-cue" aria-hidden="true">
@@ -176,15 +180,20 @@
                 </ul>
               </div>
             </article>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="combat">
-          <div class="section-heading">
-            <p class="eyebrow">Build smarter</p>
-            <h2>Heroes & Combat</h2>
-          </div>
-          <div class="guide-list">
+        <section class="section collapsible-section is-collapsed" id="combat">
+          <button class="collapsible-trigger" type="button" aria-expanded="false" aria-controls="combatContent">
+            <span>
+              <span class="eyebrow">Build smarter</span>
+              <span class="collapsible-title">Heroes & Combat</span>
+            </span>
+            <span class="collapse-icon" aria-hidden="true"></span>
+          </button>
+          <div class="collapsible-content" id="combatContent" hidden>
+            <div class="guide-list">
             <article>
               <h3>Squad Building</h3>
               <p>Future guidance will cover which squads fit each situation and how to level them efficiently.</p>
@@ -197,15 +206,20 @@
               <h3>Situational Picks</h3>
               <p>We will break down which squads make sense for attacking, defending, events, and rallies.</p>
             </article>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="goals">
-          <div class="section-heading">
-            <p class="eyebrow">Alliance Duel targets</p>
-            <h2>VS Goals</h2>
-          </div>
-          <div class="goal-grid">
+        <section class="section collapsible-section is-collapsed" id="goals">
+          <button class="collapsible-trigger" type="button" aria-expanded="false" aria-controls="goalsContent">
+            <span>
+              <span class="eyebrow">Alliance Duel targets</span>
+              <span class="collapsible-title">VS Goals</span>
+            </span>
+            <span class="collapse-icon" aria-hidden="true"></span>
+          </button>
+          <div class="collapsible-content" id="goalsContent" hidden>
+            <div class="goal-grid">
             <article>
               <span>Daily</span>
               <strong>7.2M</strong>
@@ -216,10 +230,11 @@
               <strong>43.2M</strong>
               <p>The full-week goal across all VS days.</p>
             </article>
-          </div>
-          <div class="note-panel">
-            <h3>No public callouts</h3>
-            <p>Member ranking screenshots and weekly VS scoreboards stay private. This public hub should explain goals and strategy without naming or shaming players.</p>
+            </div>
+            <div class="note-panel">
+              <h3>No public callouts</h3>
+              <p>Member ranking screenshots and weekly VS scoreboards stay private. This public hub should explain goals and strategy without naming or shaming players.</p>
+            </div>
           </div>
         </section>
       </main>
@@ -229,6 +244,6 @@
       </div>
     </div>
 
-    <script src="app.js?v=16"></script>
+    <script src="app.js?v=25"></script>
   </body>
 </html>

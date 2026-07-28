@@ -9,6 +9,7 @@ const imageButtons = document.querySelectorAll(".image-preview-button");
 const imageLightbox = document.querySelector("#imageLightbox");
 const lightboxImage = document.querySelector("#lightboxImage");
 const lightboxClose = document.querySelector("#lightboxClose");
+const collapsibleSections = document.querySelectorAll(".collapsible-section");
 let touchStartY = 0;
 let pullDistance = 0;
 let pullReady = false;
@@ -26,6 +27,46 @@ menuButton.addEventListener("click", () => setDrawer(true));
 closeButton.addEventListener("click", () => setDrawer(false));
 scrim.addEventListener("click", () => setDrawer(false));
 navLinks.forEach((link) => link.addEventListener("click", () => setDrawer(false)));
+
+function setSectionOpen(section, open) {
+  const trigger = section.querySelector(".collapsible-trigger");
+  const content = section.querySelector(".collapsible-content");
+
+  if (!trigger || !content) {
+    return;
+  }
+
+  trigger.setAttribute("aria-expanded", String(open));
+  section.classList.toggle("is-collapsed", !open);
+  content.hidden = !open;
+}
+
+function openLinkedSection(hash) {
+  if (!hash) {
+    return;
+  }
+
+  const section = document.querySelector(hash);
+  if (section?.classList.contains("collapsible-section")) {
+    setSectionOpen(section, true);
+  }
+}
+
+collapsibleSections.forEach((section) => {
+  const trigger = section.querySelector(".collapsible-trigger");
+
+  trigger?.addEventListener("click", () => {
+    const isOpen = trigger.getAttribute("aria-expanded") === "true";
+    setSectionOpen(section, !isOpen);
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", () => openLinkedSection(link.hash));
+});
+
+window.addEventListener("hashchange", () => openLinkedSection(window.location.hash));
+openLinkedSection(window.location.hash);
 
 function closeLightbox() {
   imageLightbox.classList.remove("open");
@@ -140,6 +181,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js?v=14").catch(() => {});
+    navigator.serviceWorker.register("service-worker.js?v=25").catch(() => {});
   });
 }
