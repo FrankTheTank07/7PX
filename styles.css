@@ -215,6 +215,12 @@ button {
   width: min(100%, 740px);
 }
 
+.hero-content h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.9rem, 10vw, 3.1rem);
+  line-height: 1;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--cyan);
@@ -237,6 +243,36 @@ button {
   color: #eef2f7;
   font-size: 1.15rem;
   line-height: 1.45;
+}
+
+.rule-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule-list li {
+  position: relative;
+  padding: 14px 14px 14px 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(23, 28, 35, 0.84);
+  color: #e8edf5;
+  line-height: 1.45;
+}
+
+.rule-list li::before {
+  content: "";
+  position: absolute;
+  top: 19px;
+  left: 17px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(244, 185, 66, 0.14);
 }
 
 .hero-actions {
