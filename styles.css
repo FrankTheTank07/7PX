@@ -27,6 +27,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   letter-spacing: 0;
+  overscroll-behavior-y: contain;
 }
 
 a {
@@ -41,6 +42,31 @@ button {
 .app-shell {
   min-height: 100svh;
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pull-refresh-indicator {
+  position: fixed;
+  top: calc(8px + env(safe-area-inset-top));
+  left: 50%;
+  z-index: 60;
+  min-width: 132px;
+  padding: 9px 12px;
+  border: 1px solid rgba(244, 185, 66, 0.42);
+  border-radius: 8px;
+  background: rgba(16, 19, 24, 0.94);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -120%);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.pull-refresh-indicator.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .topbar {

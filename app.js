@@ -4,6 +4,11 @@ const drawer = document.querySelector("#siteDrawer");
 const scrim = document.querySelector("#scrim");
 const navLinks = document.querySelectorAll(".drawer-nav a");
 const refreshButton = document.querySelector("#refreshButton");
+const pullRefreshIndicator = document.querySelector("#pullRefreshIndicator");
+let touchStartY = 0;
+let pullDistance = 0;
+let pullReady = false;
+let refreshing = false;
 
 function setDrawer(open) {
   drawer.classList.toggle("open", open);
@@ -19,8 +24,15 @@ scrim.addEventListener("click", () => setDrawer(false));
 navLinks.forEach((link) => link.addEventListener("click", () => setDrawer(false)));
 
 async function refreshSiteFiles() {
+  if (refreshing) {
+    return;
+  }
+
+  refreshing = true;
   refreshButton.disabled = true;
   refreshButton.textContent = "Updating";
+  pullRefreshIndicator.textContent = "Refreshing";
+  pullRefreshIndicator.classList.add("visible");
 
   if ("serviceWorker" in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
@@ -44,6 +56,49 @@ refreshButton.addEventListener("click", () => {
   });
 });
 
+window.addEventListener(
+  "touchstart",
+  (event) => {
+    if (window.scrollY === 0 && !refreshing) {
+      touchStartY = event.touches[0].clientY;
+      pullDistance = 0;
+      pullReady = false;
+    }
+  },
+  { passive: true }
+);
+
+window.addEventListener(
+  "touchmove",
+  (event) => {
+    if (window.scrollY !== 0 || refreshing || touchStartY === 0) {
+      return;
+    }
+
+    pullDistance = event.touches[0].clientY - touchStartY;
+    if (pullDistance > 36) {
+      pullRefreshIndicator.textContent = pullDistance > 86 ? "Release to refresh" : "Pull to refresh";
+      pullRefreshIndicator.classList.add("visible");
+      pullReady = pullDistance > 86;
+    }
+  },
+  { passive: true }
+);
+
+window.addEventListener("touchend", () => {
+  if (pullReady && !refreshing) {
+    refreshSiteFiles().catch(() => {
+      window.location.reload();
+    });
+  } else {
+    pullRefreshIndicator.classList.remove("visible");
+  }
+
+  touchStartY = 0;
+  pullDistance = 0;
+  pullReady = false;
+});
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     setDrawer(false);
@@ -52,6 +107,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js").catch(() => {});
+    navigator.serviceWorker.register("service-worker.js?v=13").catch(() => {});
   });
 }
