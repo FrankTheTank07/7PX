@@ -1,4 +1,4 @@
-const CACHE_NAME = "7px-hub-v23";
+const CACHE_NAME = "7px-hub-v24";
 const ASSETS = [
   "./",
   "index.html",
@@ -10,6 +10,7 @@ const ASSETS = [
   "assets/Header.PNG",
   "assets/marshals-guard.jpg",
   "assets/desert-storm.jpg",
+  "assets/canyon-storm.jpg",
   "assets/zombie-siege-event.jpg",
   "assets/zombie-siege-wall-menu.jpg",
   "assets/zombie-siege-wall-squads.jpg"
