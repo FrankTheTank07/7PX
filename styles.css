@@ -313,47 +313,24 @@ button {
   line-height: 1;
 }
 
-.checklist,
-.info-grid,
 .guide-list,
 .event-list,
-.goal-grid,
-.tool-grid {
+.goal-grid {
   display: grid;
   gap: 12px;
 }
 
-.checklist article,
-.info-grid article,
 .guide-list article,
 .event-list a,
-details,
-.rank-card,
 .note-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
 
-.checklist article,
-.info-grid article,
 .guide-list article,
-.event-list a,
-details {
+.event-list a {
   padding: 16px;
-}
-
-.checklist span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 28px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  background: rgba(244, 185, 66, 0.15);
-  color: var(--gold);
-  font-weight: 900;
 }
 
 h3,
@@ -372,7 +349,7 @@ p {
 }
 
 article p,
-details p {
+article p {
   margin-bottom: 0;
 }
 
@@ -388,32 +365,6 @@ details p {
 .event-list span {
   color: var(--muted);
   line-height: 1.45;
-}
-
-.rank-card {
-  overflow: hidden;
-}
-
-.rank-card img,
-.media-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.rank-card div {
-  padding: 16px;
-}
-
-.media-card {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel);
-}
-
-.tool-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .goal-grid {
@@ -450,25 +401,6 @@ details p {
   padding: 16px;
 }
 
-.tool-grid button {
-  min-height: 56px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--panel-2);
-  color: var(--ink);
-  font-weight: 800;
-}
-
-summary {
-  cursor: pointer;
-  font-weight: 800;
-}
-
-details + details {
-  margin-top: 10px;
-}
-
 @media (min-width: 720px) {
   main {
     max-width: 980px;
@@ -479,16 +411,8 @@ details + details {
     border-radius: 0 0 8px 8px;
   }
 
-  .checklist,
-  .info-grid,
   .guide-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .rank-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-    align-items: center;
   }
 
   .goal-grid {
