@@ -5,6 +5,10 @@ const scrim = document.querySelector("#scrim");
 const navLinks = document.querySelectorAll(".drawer-nav a");
 const refreshButton = document.querySelector("#refreshButton");
 const pullRefreshIndicator = document.querySelector("#pullRefreshIndicator");
+const imageButtons = document.querySelectorAll(".image-preview-button");
+const imageLightbox = document.querySelector("#imageLightbox");
+const lightboxImage = document.querySelector("#lightboxImage");
+const lightboxClose = document.querySelector("#lightboxClose");
 let touchStartY = 0;
 let pullDistance = 0;
 let pullReady = false;
@@ -22,6 +26,31 @@ menuButton.addEventListener("click", () => setDrawer(true));
 closeButton.addEventListener("click", () => setDrawer(false));
 scrim.addEventListener("click", () => setDrawer(false));
 navLinks.forEach((link) => link.addEventListener("click", () => setDrawer(false)));
+
+function closeLightbox() {
+  imageLightbox.classList.remove("open");
+  imageLightbox.setAttribute("aria-hidden", "true");
+  lightboxImage.removeAttribute("src");
+  lightboxImage.alt = "";
+  document.body.style.overflow = "";
+}
+
+imageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    lightboxImage.src = button.dataset.fullImage;
+    lightboxImage.alt = button.dataset.fullAlt || "";
+    imageLightbox.classList.add("open");
+    imageLightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+imageLightbox.addEventListener("click", (event) => {
+  if (event.target === imageLightbox) {
+    closeLightbox();
+  }
+});
 
 async function refreshSiteFiles() {
   if (refreshing) {
@@ -101,12 +130,16 @@ window.addEventListener("touchend", () => {
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
-    setDrawer(false);
+    if (imageLightbox.classList.contains("open")) {
+      closeLightbox();
+    } else {
+      setDrawer(false);
+    }
   }
 });
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js?v=13").catch(() => {});
+    navigator.serviceWorker.register("service-worker.js?v=14").catch(() => {});
   });
 }

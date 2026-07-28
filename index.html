@@ -79,7 +79,7 @@
             <p class="eyebrow">Preparation wins points</p>
             <h2>Events</h2>
           </div>
-          <div class="event-track" aria-label="Alliance event guides">
+          <div class="event-stack" aria-label="Alliance event guides">
             <article class="event-feature">
               <img src="assets/marshals-guard.jpg" alt="Alliance Exercise event cover screen" />
               <div class="event-copy">
@@ -93,10 +93,16 @@
               </div>
             </article>
             <article class="event-feature zombie-siege-card">
-              <div class="event-gallery" aria-label="Zombie Siege setup screenshots">
-                <img src="assets/zombie-siege-event.jpg" alt="Zombie Siege event screen" />
-                <img src="assets/zombie-siege-wall-menu.jpg" alt="HQ wall menu button highlighted" />
-                <img src="assets/zombie-siege-wall-squads.jpg" alt="Join Defense buttons selected for squads" />
+              <div class="event-thumbnails" aria-label="Zombie Siege setup screenshots">
+                <button type="button" class="image-preview-button" data-full-image="assets/zombie-siege-event.jpg" data-full-alt="Zombie Siege event screen">
+                  <img src="assets/zombie-siege-event.jpg" alt="Zombie Siege event screen" />
+                </button>
+                <button type="button" class="image-preview-button" data-full-image="assets/zombie-siege-wall-menu.jpg" data-full-alt="HQ wall menu button highlighted">
+                  <img src="assets/zombie-siege-wall-menu.jpg" alt="HQ wall menu button highlighted" />
+                </button>
+                <button type="button" class="image-preview-button" data-full-image="assets/zombie-siege-wall-squads.jpg" data-full-alt="Join Defense buttons selected for squads">
+                  <img src="assets/zombie-siege-wall-squads.jpg" alt="Join Defense buttons selected for squads" />
+                </button>
               </div>
               <div class="event-copy">
                 <p class="eyebrow">Alliance Event</p>
@@ -156,8 +162,12 @@
           </div>
         </section>
       </main>
+      <div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image preview">x</button>
+        <img id="lightboxImage" alt="" />
+      </div>
     </div>
 
-    <script src="app.js?v=13"></script>
+    <script src="app.js?v=14"></script>
   </body>
 </html>

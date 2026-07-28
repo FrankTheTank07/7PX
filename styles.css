@@ -379,17 +379,9 @@ article p {
   background: #172026;
 }
 
-.event-track {
+.event-stack {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(86%, 1fr);
   gap: 14px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  padding: 0 2px 10px;
-  scroll-padding-left: 2px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
 }
 
 .event-feature {
@@ -399,7 +391,6 @@ article p {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
-  scroll-snap-align: start;
 }
 
 .event-feature img {
@@ -412,20 +403,62 @@ article p {
   padding: 16px;
 }
 
-.event-gallery {
+.event-thumbnails {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 100%;
-  gap: 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
 }
 
-.event-gallery img {
+.image-preview-button {
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   background: #07090d;
-  border-bottom: 1px solid var(--line);
-  scroll-snap-align: start;
+}
+
+.image-preview-button img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: calc(18px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, 0.86);
+}
+
+.image-lightbox.open {
+  display: flex;
+}
+
+.image-lightbox img {
+  max-width: 100%;
+  max-height: 92svh;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #07090d;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: calc(12px + env(safe-area-inset-top));
+  right: 14px;
+  z-index: 90;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 900;
 }
 
 .event-feature h3 {
@@ -487,15 +520,6 @@ article p {
 
   .guide-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .event-feature {
-    grid-template-rows: auto 1fr;
-    align-items: center;
-  }
-
-  .event-track {
-    grid-auto-columns: minmax(420px, 0.72fr);
   }
 
   .goal-grid {
