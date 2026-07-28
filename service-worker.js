@@ -1,4 +1,4 @@
-const CACHE_NAME = "7px-hub-v8";
+const CACHE_NAME = "7px-hub-v9";
 const ASSETS = [
   "./",
   "index.html",
@@ -7,7 +7,8 @@ const ASSETS = [
   "manifest.webmanifest",
   "assets/icon-192.png",
   "assets/icon-512.png",
-  "assets/Header.PNG"
+  "assets/Header.PNG",
+  "assets/marshals-guard.jpg"
 ];
 
 self.addEventListener("install", (event) => {
