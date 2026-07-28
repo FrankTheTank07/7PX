@@ -403,24 +403,48 @@ article p {
   padding: 16px;
 }
 
+.scroll-cue {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px 2px;
+  color: #f8d477;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.scroll-arrows {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
 .event-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 8px;
-  padding: 8px;
+  overflow-x: auto;
+  padding: 8px 12px 12px;
   border-bottom: 1px solid var(--line);
+  scroll-padding-inline: 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .image-preview-button {
   overflow: hidden;
+  flex: 0 0 clamp(138px, 44vw, 190px);
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #07090d;
+  scroll-snap-align: start;
 }
 
 .image-preview-button img {
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 170px;
   object-fit: cover;
 }
 
