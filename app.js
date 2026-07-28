@@ -24,16 +24,17 @@ async function refreshSiteFiles() {
 
   if ("serviceWorker" in navigator) {
     const registrations = await navigator.serviceWorker.getRegistrations();
-    await Promise.all(registrations.map((registration) => registration.update()));
+    await Promise.all(registrations.map((registration) => registration.unregister()));
   }
 
   if ("caches" in window) {
     const keys = await caches.keys();
-    await Promise.all(keys.filter((key) => key.startsWith("7px-hub-")).map((key) => caches.delete(key)));
+    await Promise.all(keys.map((key) => caches.delete(key)));
   }
 
-  const nextUrl = new URL(window.location.href);
+  const nextUrl = new URL(window.location.origin + window.location.pathname);
   nextUrl.searchParams.set("refresh", String(Date.now()));
+  nextUrl.hash = window.location.hash;
   window.location.replace(nextUrl.toString());
 }
 
