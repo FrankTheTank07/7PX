@@ -4,6 +4,7 @@ const drawer = document.querySelector("#siteDrawer");
 const scrim = document.querySelector("#scrim");
 const navLinks = document.querySelectorAll(".drawer-nav a");
 const refreshButton = document.querySelector("#refreshButton");
+const translateLink = document.querySelector("#translateLink");
 const pullRefreshIndicator = document.querySelector("#pullRefreshIndicator");
 const imageButtons = document.querySelectorAll(".image-preview-button");
 const imageLightbox = document.querySelector("#imageLightbox");
@@ -14,6 +15,35 @@ let touchStartY = 0;
 let pullDistance = 0;
 let pullReady = false;
 let refreshing = false;
+const siteUrl = "https://frankthetank07.github.io/7PX";
+const translateLanguages = {
+  en: { label: "Translate", target: "" },
+  es: { label: "Traducir", target: "es" },
+  pt: { label: "Traduzir", target: "pt" },
+  ko: { label: "번역", target: "ko" },
+  id: { label: "Terjemahkan", target: "id" }
+};
+
+function setTranslateLanguage() {
+  if (!translateLink) {
+    return;
+  }
+
+  const languageCode = (navigator.language || "en").toLowerCase().split("-")[0];
+  const language = translateLanguages[languageCode] || translateLanguages.en;
+  const translateUrl = new URL("https://translate.google.com/translate");
+
+  translateUrl.searchParams.set("sl", "auto");
+  if (language.target) {
+    translateUrl.searchParams.set("tl", language.target);
+  }
+  translateUrl.searchParams.set("u", siteUrl);
+
+  translateLink.textContent = language.label;
+  translateLink.href = translateUrl.toString();
+}
+
+setTranslateLanguage();
 
 function setDrawer(open) {
   drawer.classList.toggle("open", open);
@@ -181,6 +211,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js?v=27").catch(() => {});
+    navigator.serviceWorker.register("service-worker.js?v=28").catch(() => {});
   });
 }
