@@ -432,6 +432,19 @@ article p {
   -webkit-overflow-scrolling: touch;
 }
 
+.event-single-preview {
+  padding: 0 12px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.event-single-preview .scroll-cue {
+  padding-inline: 0;
+}
+
+.event-single-preview .image-preview-button {
+  width: clamp(138px, 44vw, 190px);
+}
+
 .image-preview-button {
   overflow: hidden;
   flex: 0 0 clamp(138px, 44vw, 190px);
