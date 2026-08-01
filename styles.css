@@ -241,6 +241,25 @@ button {
   width: min(100%, 740px);
 }
 
+.urgent-announcement {
+  width: min(100%, 740px);
+  padding: 16px;
+  border: 1px solid rgba(244, 185, 66, 0.42);
+  border-radius: 8px;
+  background: rgba(244, 185, 66, 0.11);
+}
+
+.urgent-announcement h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.45rem, 7vw, 2.2rem);
+  line-height: 1;
+}
+
+.urgent-announcement p:last-child {
+  margin-bottom: 0;
+  color: #f4f7fb;
+}
+
 .hero-content h2 {
   margin: 0 0 14px;
   font-size: clamp(1.9rem, 10vw, 3.1rem);
