@@ -101,12 +101,12 @@ function formatICSDate(date, allDay) {
   return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
 }
 
-function buildICSLink(event) {
+function buildICSContent(event) {
   const allDay = Boolean(event.start.date);
   const start = getEventStart(event);
   const end = getEventEnd(event);
   const dateType = allDay ? ";VALUE=DATE" : "";
-  const ics = [
+  return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
     "PRODID:-//7PX//Alliance Calendar//EN",
@@ -121,8 +121,46 @@ function buildICSLink(event) {
     "END:VEVENT",
     "END:VCALENDAR"
   ].filter(Boolean).join("\r\n");
+}
 
-  return `data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}`;
+function buildICSLink(event) {
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(buildICSContent(event))}`;
+}
+
+function getICSFilename(event) {
+  const title = (event.summary || "7PX Event")
+    .replace(/[^a-z0-9]+/gi, "-")
+    .replace(/(^-|-$)/g, "")
+    .toLowerCase();
+
+  return `${title || "7px-event"}.ics`;
+}
+
+async function openAppleCalendarFile(event) {
+  const filename = getICSFilename(event);
+  const blob = new Blob([buildICSContent(event)], { type: "text/calendar;charset=utf-8" });
+
+  if (typeof File === "function" && navigator.canShare && navigator.share) {
+    const file = new File([blob], filename, { type: "text/calendar" });
+
+    if (navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: event.summary || "7PX Event",
+        files: [file]
+      });
+      return;
+    }
+  }
+
+  const objectUrl = URL.createObjectURL(blob);
+  const downloadLink = document.createElement("a");
+
+  downloadLink.href = objectUrl;
+  downloadLink.download = filename;
+  document.body.append(downloadLink);
+  downloadLink.click();
+  downloadLink.remove();
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
 }
 
 function buildGoogleEventLink(event) {
@@ -206,8 +244,14 @@ function renderCalendar(events) {
         googleLink.rel = "noopener";
         googleLink.textContent = "Add to Google";
         icsLink.href = buildICSLink(event);
-        icsLink.download = `${(event.summary || "7PX Event").replace(/[^a-z0-9]+/gi, "-").replace(/(^-|-$)/g, "").toLowerCase() || "7px-event"}.ics`;
+        icsLink.download = getICSFilename(event);
         icsLink.textContent = "iPhone/Apple";
+        icsLink.addEventListener("click", (clickEvent) => {
+          clickEvent.preventDefault();
+          openAppleCalendarFile(event).catch(() => {
+            window.location.href = buildICSLink(event);
+          });
+        });
         actions.append(googleLink, icsLink);
         eventCard.append(title, time);
 
@@ -436,6 +480,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=37").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=38").catch(() => {});
   });
 }
