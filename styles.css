@@ -294,30 +294,22 @@ button {
   display: grid;
   gap: 10px;
   margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.rule-list li {
-  position: relative;
-  padding: 14px 14px 14px 42px;
+  padding: 16px 16px 16px 38px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(23, 28, 35, 0.84);
   color: #e8edf5;
   line-height: 1.45;
+  list-style: disc;
 }
 
-.rule-list li::before {
-  content: "";
-  position: absolute;
-  top: 19px;
-  left: 17px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(244, 185, 66, 0.14);
+.rule-list li {
+  padding-left: 2px;
+}
+
+.rule-list li::marker {
+  color: var(--gold);
+  font-size: 1.1em;
 }
 
 .hero-actions {
