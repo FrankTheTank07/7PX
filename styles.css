@@ -336,6 +336,70 @@ button {
   border-top: 1px solid var(--line);
 }
 
+.page-main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+.calendar-page {
+  display: grid;
+  gap: 16px;
+}
+
+.calendar-panel {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.calendar-copy {
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.calendar-copy h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 10vw, 3rem);
+  line-height: 1;
+}
+
+.calendar-copy p {
+  margin-bottom: 0;
+}
+
+.calendar-frame {
+  display: block;
+  width: 100%;
+  height: min(72svh, 720px);
+  min-height: 560px;
+  border: 0;
+  background: #fff;
+}
+
+.calendar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.calendar-actions a {
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: var(--gold);
+  color: #111;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendar-actions a + a {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink);
+}
+
 .compact {
   background: #12171d;
 }

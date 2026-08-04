@@ -1,7 +1,9 @@
-const CACHE_NAME = "7px-hub-v33";
+const CACHE_NAME = "7px-hub-v34";
 const ASSETS = [
   "./",
   "index.html",
+  "calendar/events/",
+  "calendar/events/index.html",
   "styles.css",
   "app.js",
   "manifest.webmanifest",

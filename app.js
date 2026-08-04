@@ -15,7 +15,7 @@ let touchStartY = 0;
 let pullDistance = 0;
 let pullReady = false;
 let refreshing = false;
-const siteUrl = "https://frankthetank07.github.io/7PX";
+const siteUrl = window.location.origin + window.location.pathname;
 const translateLanguages = {
   en: { label: "Translate", target: "" },
   es: { label: "Traducir", target: "es" },
@@ -211,6 +211,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js?v=33").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=34").catch(() => {});
   });
 }

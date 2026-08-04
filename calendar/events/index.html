@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111827" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="7PX Calendar" />
+    <meta name="description" content="7PX alliance calendar and event schedule for Last War: Survival." />
+    <title>Calendar/Events | 7PX Alliance Hub</title>
+    <link rel="manifest" href="../../manifest.webmanifest?v=12" />
+    <link rel="apple-touch-icon" href="../../assets/icon-192.png" />
+    <link rel="icon" href="../../assets/icon-192.png" />
+    <link rel="stylesheet" href="../../styles.css?v=34" />
+  </head>
+  <body data-service-worker="../../service-worker.js?v=34">
+    <div class="app-shell">
+      <div class="pull-refresh-indicator" id="pullRefreshIndicator" aria-hidden="true">Pull to refresh</div>
+      <header class="topbar">
+        <button class="icon-button" id="menuButton" aria-label="Open menu" aria-controls="siteDrawer" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a class="brand" href="../../" aria-label="7PX home">
+          <span class="brand-mark">7PX</span>
+          <span class="brand-text">Alliance Hub</span>
+        </a>
+        <button class="refresh-button" id="refreshButton" type="button" aria-label="Refresh site files">Refresh</button>
+        <a class="small-action" id="translateLink" href="https://translate.google.com/translate?sl=auto&amp;u=https%3A%2F%2Ffrankthetank07.github.io%2F7PX%2Fcalendar%2Fevents%2F" target="_blank" rel="noopener">Translate</a>
+      </header>
+
+      <aside class="drawer" id="siteDrawer" aria-hidden="true">
+        <div class="drawer-header">
+          <div>
+            <strong>7PX</strong>
+            <span>Last War: Survival</span>
+          </div>
+          <button class="close-button" id="closeButton" aria-label="Close menu">x</button>
+        </div>
+        <nav class="drawer-nav" aria-label="Site sections">
+          <a href="../../">Home</a>
+          <a href="../../#rules">Alliance Rules</a>
+          <a href="../../#events">Events</a>
+          <a href="./">Calendar/Events</a>
+          <a href="../../#goals">VS Goals</a>
+          <a href="../../#combat">Heroes &amp; Combat</a>
+        </nav>
+      </aside>
+      <div class="scrim" id="scrim" hidden></div>
+
+      <main class="page-main">
+        <section class="calendar-page" aria-label="Calendar and events">
+          <div class="calendar-panel">
+            <div class="calendar-copy">
+              <p class="eyebrow">Alliance schedule</p>
+              <h1>Calendar/Events</h1>
+              <p>Use this calendar to check upcoming alliance events, signups, and schedule reminders.</p>
+            </div>
+            <iframe
+              class="calendar-frame"
+              title="7PX alliance Google Calendar"
+              src="https://calendar.google.com/calendar/embed?src=0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007be98c%40group.calendar.google.com&amp;ctz=America%2FNew_York&amp;mode=AGENDA">
+            </iframe>
+          </div>
+          <div class="calendar-actions">
+            <a href="https://calendar.google.com/calendar/u/1?cid=MGU3MTJlZmU4ZjRjYmEwMjI2ZDg1NWVlMTVlOWU3M2RhNjQzMzAyZjU4NDBjZGNiMjZiMzA5MTkwMDdiZTk4Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">Open in Google Calendar</a>
+            <a href="../../">Back to Home</a>
+          </div>
+        </section>
+      </main>
+
+      <div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
+        <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image preview">x</button>
+        <img id="lightboxImage" alt="" />
+      </div>
+    </div>
+
+    <script src="../../app.js?v=34"></script>
+  </body>
+</html>
