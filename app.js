@@ -24,6 +24,7 @@ const siteUrl = window.location.origin + window.location.pathname;
 const calendarId = "0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007be98c@group.calendar.google.com";
 const calendarApiKey = "AIzaSyBtujx3YQZ3ox4d7ndQNpJR5OWEDdMy_8Y";
 const calendarTimeZone = "America/New_York";
+const appleCalendarSubscribeUrl = `webcal://calendar.google.com/calendar/ical/${encodeURIComponent(calendarId)}/public/basic.ics`;
 let visibleWeekStart = getWeekStart(new Date());
 const translateLanguages = {
   en: { label: "Translate", target: "" },
@@ -242,7 +243,6 @@ function renderCalendar(events) {
         const time = document.createElement("div");
         const actions = document.createElement("div");
         const googleLink = document.createElement("a");
-        const icsLink = document.createElement("a");
 
         eventCard.className = "calendar-event";
         time.className = "calendar-event-time";
@@ -253,16 +253,7 @@ function renderCalendar(events) {
         googleLink.target = "_blank";
         googleLink.rel = "noopener";
         googleLink.textContent = "Add to Google";
-        icsLink.href = buildICSLink(event);
-        icsLink.download = getICSFilename(event);
-        icsLink.textContent = "iPhone/Apple";
-        icsLink.addEventListener("click", (clickEvent) => {
-          clickEvent.preventDefault();
-          openAppleCalendarFile(event).catch(() => {
-            window.location.href = buildICSLink(event);
-          });
-        });
-        actions.append(googleLink, icsLink);
+        actions.append(googleLink);
         eventCard.append(title, time);
 
         if (event.description) {
@@ -323,6 +314,10 @@ nextWeekButton?.addEventListener("click", () => {
 });
 
 loadCalendarEvents();
+
+document.querySelectorAll("[data-apple-calendar-subscribe]").forEach((link) => {
+  link.href = appleCalendarSubscribeUrl;
+});
 
 function setDrawer(open) {
   drawer.classList.toggle("open", open);
@@ -490,6 +485,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=39").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=40").catch(() => {});
   });
 }

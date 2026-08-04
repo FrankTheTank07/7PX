@@ -370,6 +370,21 @@ button {
   margin-bottom: 0;
 }
 
+.calendar-subscribe-actions {
+  display: flex;
+  margin-top: 12px;
+}
+
+.calendar-subscribe-actions a {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: var(--gold);
+  color: #111;
+  font-weight: 850;
+  text-align: center;
+}
+
 .calendar-actions {
   display: flex;
   flex-wrap: wrap;
