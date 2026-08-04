@@ -211,6 +211,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=35").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=36").catch(() => {});
   });
 }
