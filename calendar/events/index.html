@@ -12,9 +12,9 @@
     <link rel="manifest" href="../../manifest.webmanifest?v=12" />
     <link rel="apple-touch-icon" href="../../assets/icon-192.png" />
     <link rel="icon" href="../../assets/icon-192.png" />
-    <link rel="stylesheet" href="../../styles.css?v=36" />
+    <link rel="stylesheet" href="../../styles.css?v=37" />
   </head>
-  <body data-service-worker="../../service-worker.js?v=36">
+  <body data-service-worker="../../service-worker.js?v=37">
     <div class="app-shell">
       <div class="pull-refresh-indicator" id="pullRefreshIndicator" aria-hidden="true">Pull to refresh</div>
       <header class="topbar">
@@ -58,11 +58,15 @@
               <h1>Calendar/Events</h1>
               <p>Use the weekly calendar view to check upcoming alliance events, signups, and schedule reminders.</p>
             </div>
-            <iframe
-              class="calendar-frame"
-              title="7PX alliance Google Calendar"
-              src="https://calendar.google.com/calendar/embed?src=0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007be98c%40group.calendar.google.com&amp;ctz=America%2FNew_York&amp;mode=WEEK&amp;wkst=2&amp;bgcolor=%23101318&amp;color=%23f4b942">
-            </iframe>
+            <div class="custom-calendar" id="customCalendar" aria-live="polite">
+              <div class="calendar-toolbar">
+                <button class="calendar-nav" type="button" id="previousWeek">Previous</button>
+                <h2 id="calendarRange">Loading events</h2>
+                <button class="calendar-nav" type="button" id="nextWeek">Next</button>
+              </div>
+              <div class="calendar-status" id="calendarStatus">Loading calendar events...</div>
+              <div class="calendar-week" id="calendarWeek"></div>
+            </div>
           </div>
           <div class="calendar-actions">
             <a href="https://calendar.google.com/calendar/u/1?cid=MGU3MTJlZmU4ZjRjYmEwMjI2ZDg1NWVlMTVlOWU3M2RhNjQzMzAyZjU4NDBjZGNiMjZiMzA5MTkwMDdiZTk4Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener">Open in Google Calendar</a>
@@ -77,6 +81,6 @@
       </div>
     </div>
 
-    <script src="../../app.js?v=36"></script>
+    <script src="../../app.js?v=37"></script>
   </body>
 </html>
