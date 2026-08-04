@@ -109,6 +109,7 @@ function buildICSContent(event) {
   return [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
+    "METHOD:PUBLISH",
     "PRODID:-//7PX//Alliance Calendar//EN",
     "BEGIN:VEVENT",
     `UID:${event.id}@7px`,
@@ -138,7 +139,16 @@ function getICSFilename(event) {
 
 async function openAppleCalendarFile(event) {
   const filename = getICSFilename(event);
-  const blob = new Blob([buildICSContent(event)], { type: "text/calendar;charset=utf-8" });
+  const blob = new Blob([buildICSContent(event)], { type: "text/calendar" });
+  const objectUrl = URL.createObjectURL(blob);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+  if (isIOS) {
+    window.location.href = objectUrl;
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 60000);
+    return;
+  }
 
   if (typeof File === "function" && navigator.canShare && navigator.share) {
     const file = new File([blob], filename, { type: "text/calendar" });
@@ -148,11 +158,11 @@ async function openAppleCalendarFile(event) {
         title: event.summary || "7PX Event",
         files: [file]
       });
+      setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
       return;
     }
   }
 
-  const objectUrl = URL.createObjectURL(blob);
   const downloadLink = document.createElement("a");
 
   downloadLink.href = objectUrl;
@@ -480,6 +490,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=38").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=39").catch(() => {});
   });
 }
