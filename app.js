@@ -30,6 +30,7 @@ const calendarId = "0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007b
 const calendarApiKey = "AIzaSyBtujx3YQZ3ox4d7ndQNpJR5OWEDdMy_8Y";
 const calendarTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 const appleCalendarSubscribeUrl = `webcal://calendar.google.com/calendar/ical/${encodeURIComponent(calendarId)}/public/basic.ics`;
+const googleCalendarSubscribeUrl = "https://calendar.google.com/calendar/u/1?cid=MGU3MTJlZmU4ZjRjYmEwMjI2ZDg1NWVlMTVlOWU3M2RhNjQzMzAyZjU4NDBjZGNiMjZiMzA5MTkwMDdiZTk4Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t";
 let visibleWeekStart = getWeekStart(new Date());
 const translateLanguages = {
   en: { label: "Translate", target: "" },
@@ -315,6 +316,20 @@ document.querySelectorAll("[data-apple-calendar-subscribe]").forEach((link) => {
   link.href = appleCalendarSubscribeUrl;
 });
 
+document.querySelectorAll("[data-google-calendar-subscribe]").forEach((link) => {
+  link.href = googleCalendarSubscribeUrl;
+  link.addEventListener("click", (event) => {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (!isAndroid) {
+      return;
+    }
+
+    event.preventDefault();
+    window.location.href = `intent://calendar.google.com/calendar/u/1?cid=MGU3MTJlZmU4ZjRjYmEwMjI2ZDg1NWVlMTVlOWU3M2RhNjQzMzAyZjU4NDBjZGNiMjZiMzA5MTkwMDdiZTk4Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=${encodeURIComponent(googleCalendarSubscribeUrl)};end`;
+  });
+});
+
 function setDrawer(open) {
   drawer.classList.toggle("open", open);
   drawer.setAttribute("aria-hidden", String(!open));
@@ -518,6 +533,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=43").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=44").catch(() => {});
   });
 }
