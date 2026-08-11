@@ -16,10 +16,15 @@ const calendarRange = document.querySelector("#calendarRange");
 const calendarStatus = document.querySelector("#calendarStatus");
 const previousWeekButton = document.querySelector("#previousWeek");
 const nextWeekButton = document.querySelector("#nextWeek");
+const installHelpButton = document.querySelector("#installHelpButton");
+const installModal = document.querySelector("#installModal");
+const installClose = document.querySelector("#installClose");
+const installPromptButton = document.querySelector("#installPromptButton");
 let touchStartY = 0;
 let pullDistance = 0;
 let pullReady = false;
 let refreshing = false;
+let deferredInstallPrompt = null;
 const siteUrl = window.location.origin + window.location.pathname;
 const calendarId = "0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007be98c@group.calendar.google.com";
 const calendarApiKey = "AIzaSyBtujx3YQZ3ox4d7ndQNpJR5OWEDdMy_8Y";
@@ -332,6 +337,41 @@ closeButton.addEventListener("click", () => setDrawer(false));
 scrim.addEventListener("click", () => setDrawer(false));
 navLinks.forEach((link) => link.addEventListener("click", () => setDrawer(false)));
 
+function setInstallModal(open) {
+  installModal?.classList.toggle("open", open);
+  installModal?.setAttribute("aria-hidden", String(!open));
+  document.body.style.overflow = open ? "hidden" : "";
+}
+
+installHelpButton?.addEventListener("click", () => {
+  setDrawer(false);
+  setInstallModal(true);
+});
+
+installClose?.addEventListener("click", () => setInstallModal(false));
+installModal?.addEventListener("click", (event) => {
+  if (event.target === installModal) {
+    setInstallModal(false);
+  }
+});
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installPromptButton.hidden = false;
+});
+
+installPromptButton?.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) {
+    return;
+  }
+
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installPromptButton.hidden = true;
+});
+
 function setSectionOpen(section, open) {
   const trigger = section.querySelector(".collapsible-trigger");
   const content = section.querySelector(".collapsible-content");
@@ -477,6 +517,8 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     if (imageLightbox.classList.contains("open")) {
       closeLightbox();
+    } else if (installModal?.classList.contains("open")) {
+      setInstallModal(false);
     } else {
       setDrawer(false);
     }
@@ -485,6 +527,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=40").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=41").catch(() => {});
   });
 }

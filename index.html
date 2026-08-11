@@ -12,7 +12,7 @@
     <link rel="manifest" href="manifest.webmanifest?v=12" />
     <link rel="apple-touch-icon" href="assets/icon-192.png" />
     <link rel="icon" href="assets/icon-192.png" />
-    <link rel="stylesheet" href="styles.css?v=40" />
+    <link rel="stylesheet" href="styles.css?v=41" />
   </head>
   <body>
     <div class="app-shell">
@@ -46,6 +46,7 @@
           <a href="calendar/events/">Calendar</a>
           <a href="#goals">VS Goals</a>
           <a href="#combat">Heroes &amp; Combat</a>
+          <button class="drawer-action" id="installHelpButton" type="button">Add to Home Screen</button>
         </nav>
       </aside>
       <div class="scrim" id="scrim" hidden></div>
@@ -246,8 +247,36 @@
         <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close image preview">x</button>
         <img id="lightboxImage" alt="" />
       </div>
+      <div class="install-modal" id="installModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="installModalTitle">
+        <div class="install-card">
+          <button type="button" class="install-close" id="installClose" aria-label="Close install instructions">x</button>
+          <p class="eyebrow">Quick access</p>
+          <h2 id="installModalTitle">Add to Home Screen</h2>
+          <button class="install-prompt-button" id="installPromptButton" type="button" hidden>Install app</button>
+          <div class="install-steps">
+            <article>
+              <h3>iPhone</h3>
+              <ol>
+                <li>Open this site in Safari.</li>
+                <li>Tap the Share button.</li>
+                <li>Tap Add to Home Screen.</li>
+                <li>Tap Add.</li>
+              </ol>
+            </article>
+            <article>
+              <h3>Android</h3>
+              <ol>
+                <li>Open this site in Chrome.</li>
+                <li>Tap the browser menu.</li>
+                <li>Tap Add to Home screen or Install app.</li>
+                <li>Confirm the shortcut.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script src="app.js?v=40"></script>
+    <script src="app.js?v=41"></script>
   </body>
 </html>
