@@ -246,19 +246,11 @@ function renderCalendar(events) {
         const eventCard = document.createElement("article");
         const title = document.createElement("h3");
         const time = document.createElement("div");
-        const actions = document.createElement("div");
-        const googleLink = document.createElement("a");
 
         eventCard.className = "calendar-event";
         time.className = "calendar-event-time";
-        actions.className = "calendar-event-actions";
         title.textContent = event.summary || "7PX Event";
         time.textContent = formatEventTime(event);
-        googleLink.href = buildGoogleEventLink(event);
-        googleLink.target = "_blank";
-        googleLink.rel = "noopener";
-        googleLink.textContent = "Add to Google";
-        actions.append(googleLink);
         eventCard.append(title, time);
 
         if (event.description) {
@@ -268,7 +260,6 @@ function renderCalendar(events) {
           eventCard.append(description);
         }
 
-        eventCard.append(actions);
         eventList.append(eventCard);
       });
     }
@@ -527,6 +518,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=42").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=43").catch(() => {});
   });
 }
