@@ -28,7 +28,7 @@ let deferredInstallPrompt = null;
 const siteUrl = window.location.origin + window.location.pathname;
 const calendarId = "0e712efe8f4cba0226d855ee15e9e73da643302f5840cdcb26b30919007be98c@group.calendar.google.com";
 const calendarApiKey = "AIzaSyBtujx3YQZ3ox4d7ndQNpJR5OWEDdMy_8Y";
-const calendarTimeZone = "America/New_York";
+const calendarTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 const appleCalendarSubscribeUrl = `webcal://calendar.google.com/calendar/ical/${encodeURIComponent(calendarId)}/public/basic.ics`;
 let visibleWeekStart = getWeekStart(new Date());
 const translateLanguages = {
@@ -527,6 +527,6 @@ window.addEventListener("keydown", (event) => {
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=41").catch(() => {});
+    navigator.serviceWorker.register(document.body.dataset.serviceWorker || "service-worker.js?v=42").catch(() => {});
   });
 }
